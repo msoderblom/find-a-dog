@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import "./App.css";
+import { Route, Switch } from "react-router-dom";
+import LayoutSimple from "./components/LayoutSimple";
+import StartPage from "./pages/StartPage";
+import BreedListPage from "./pages/BreedListPage";
+import BreedImagesPage from "./pages/BreedImagesPage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route
+          path="/breed/:breed"
+          render={(props) => {
+            return (
+              <LayoutSimple>
+                <BreedImagesPage {...props}></BreedImagesPage>
+              </LayoutSimple>
+            );
+          }}
+        ></Route>
+        <Route path="/breed-list">
+          <LayoutSimple>
+            <BreedListPage></BreedListPage>
+          </LayoutSimple>
+        </Route>
+        <Route path="/">
+          <LayoutSimple>
+            <StartPage></StartPage>
+          </LayoutSimple>
+        </Route>
+      </Switch>
     </div>
   );
 }
