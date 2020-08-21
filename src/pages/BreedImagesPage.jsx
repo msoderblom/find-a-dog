@@ -6,6 +6,12 @@ export default function BreedImagesPage(props) {
 
   const breed = props.match.params.breed;
   function fetchImages() {
+    /*  https://dog.ceo/api/breed/bulldog/boston/images/random/5 */
+    /* 
+    Jag kan ha breedName= Boston Bulldog
+    och breedURL = bulldog/boston
+    */
+
     fetch(`https://dog.ceo/api/breed/${breed}/images/random/5`)
       .then((res) => res.json())
       .then((result) => setImageList(result.message));
@@ -17,8 +23,12 @@ export default function BreedImagesPage(props) {
   }, []);
   return (
     <div>
-      <h2>{breed}</h2>
+      <h2 style={headingStyle}>{breed}</h2>
       <BreedImages imageLinks={imageList}></BreedImages>
     </div>
   );
 }
+
+const headingStyle = {
+  textTransform: "capitalize",
+};

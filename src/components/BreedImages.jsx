@@ -2,9 +2,13 @@ import React from "react";
 
 export default function BreedImages({ imageLinks }) {
   return (
-    <div>
+    <div className="gallery">
       {imageLinks.map((image, index) => {
-        return <img key={index} src={image} alt="" />;
+        return (
+          <div key={index} className="img-wrapper">
+            <img src={image} alt="" />
+          </div>
+        );
       })}
     </div>
   );
