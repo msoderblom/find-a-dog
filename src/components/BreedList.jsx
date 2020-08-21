@@ -13,15 +13,15 @@ export default function BreedList() {
   useEffect(() => {
     // Det som står här körs en gång så fort komponenten renderas
     fetchBreeds();
+    // eslint-disable-next-line
   }, []);
+
   return (
     <div>
-      <p>test från breed list</p>
-
-      <ul>
+      <ul className="list-group">
         {Object.keys(breedList).map((breed, index) => {
           return (
-            <li key={index}>
+            <li className="list-group-item" key={index}>
               <Link to={`/breed/${breed}`}>{breed}</Link>
             </li>
           );

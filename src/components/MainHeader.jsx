@@ -3,15 +3,19 @@ import { Link } from "react-router-dom";
 
 export default function MainHeader() {
   return (
-    <header>
+    <header className="">
       <h1>Find A Dog</h1>
-      <nav>
-        <ul>
-          <li className="">
-            <Link to="/">Home</Link>
+      <nav className="sticky-top">
+        <ul className="nav justify-content-center">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
           </li>
-          <li>
-            <Link to="/breed-list">Breed List</Link>
+          <li className="nav-item">
+            <Link className="nav-link" to="/breed-list">
+              Breed List
+            </Link>
           </li>
         </ul>
       </nav>
