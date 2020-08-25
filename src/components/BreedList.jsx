@@ -10,6 +10,45 @@ export default function BreedList() {
       .then((result) => setBreedList(result.message));
   }
 
+  function renderList(list) {
+    console.log(list);
+
+    const listJsx = Object.entries(list).map((breed, index) => {
+      let jsx;
+      if (breed[1].length !== 0) {
+        let subBreedList = breed[1].map((subBreed, i) => {
+          const breedURL = `${breed[0]}/${subBreed}`;
+
+          return (
+            <li className="list-group-item" key={index + "." + i}>
+              <Link to={`/breed/${breedURL}`}>
+                {subBreed} {breed[0]}
+              </Link>
+            </li>
+          );
+        });
+
+        jsx = (
+          <li className="list-group-item" key={index}>
+            <Link to={`/breed/${breed[0]}`}>{breed[0]}</Link>
+            <ul className="list-group">{subBreedList}</ul>
+          </li>
+        );
+      } else {
+        jsx = (
+          <li className="list-group-item" key={index}>
+            <Link to={`/breed/${breed}`}>{breed}</Link>
+          </li>
+        );
+      }
+
+      return jsx;
+    });
+
+    console.log(listJsx);
+    return listJsx;
+  }
+
   useEffect(() => {
     // Det som står här körs en gång så fort komponenten renderas
     fetchBreeds();
@@ -18,14 +57,17 @@ export default function BreedList() {
 
   return (
     <div>
-      <ul className="list-group">
-        {Object.keys(breedList).map((breed, index) => {
+      {console.log(breedList)}
+      <ul className="list-group ">
+        {renderList(breedList)}
+
+        {/* {Object.keys(breedList).map((breed, index) => {
           return (
             <li className="list-group-item" key={index}>
               <Link to={`/breed/${breed}`}>{breed}</Link>
             </li>
           );
-        })}
+        })} */}
       </ul>
     </div>
   );

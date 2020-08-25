@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route
-          path="/breed/:breed"
+          path="/breed/:breedURL"
           render={(props) => {
             return (
               <LayoutSimple>

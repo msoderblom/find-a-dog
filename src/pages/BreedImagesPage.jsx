@@ -12,6 +12,7 @@ export default function BreedImagesPage(props) {
     och breedURL = bulldog/boston
     */
 
+    console.log(`https://dog.ceo/api/breed/${breed}/images/random/5`);
     fetch(`https://dog.ceo/api/breed/${breed}/images/random/5`)
       .then((res) => res.json())
       .then((result) => setImageList(result.message));
