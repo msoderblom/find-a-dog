@@ -5,6 +5,9 @@ export default function BreedImagesPage(props) {
   let [imageList, setImageList] = useState([]);
 
   const breed = props.match.params.breed;
+  const subBreed = props.match.params.subBreed;
+  console.log(breed);
+  console.log(subBreed);
   function fetchImages() {
     /*  https://dog.ceo/api/breed/bulldog/boston/images/random/5 */
     /* 
@@ -12,10 +15,21 @@ export default function BreedImagesPage(props) {
     och breedURL = bulldog/boston
     */
 
-    console.log(`https://dog.ceo/api/breed/${breed}/images/random/5`);
-    fetch(`https://dog.ceo/api/breed/${breed}/images/random/5`)
+    let endpoint;
+    if (subBreed !== "undefined") {
+      endpoint = `https://dog.ceo/api/breed/${breed}/${subBreed}/images/random/5`;
+    } else {
+      endpoint = `https://dog.ceo/api/breed/${breed}/images/random/5`;
+    }
+
+    console.log(endpoint);
+    fetch(endpoint)
       .then((res) => res.json())
-      .then((result) => setImageList(result.message));
+      .then((result) => {
+        console.log(imageList);
+
+        return setImageList(result.message);
+      });
   }
 
   useEffect(() => {
@@ -24,6 +38,7 @@ export default function BreedImagesPage(props) {
   }, []);
   return (
     <div>
+      {console.log(imageList)}
       <h2 style={headingStyle}>{breed}</h2>
       <BreedImages imageLinks={imageList}></BreedImages>
     </div>
