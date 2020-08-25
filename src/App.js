@@ -21,6 +21,16 @@ function App() {
             );
           }}
         ></Route>
+        <Route
+          path="/breed/:breed"
+          render={(props) => {
+            return (
+              <LayoutSimple>
+                <BreedImagesPage {...props}></BreedImagesPage>
+              </LayoutSimple>
+            );
+          }}
+        ></Route>
         <Route path="/breed-list">
           <LayoutSimple>
             <BreedListPage></BreedListPage>

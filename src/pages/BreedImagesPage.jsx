@@ -15,21 +15,16 @@ export default function BreedImagesPage(props) {
     och breedURL = bulldog/boston
     */
 
-    let endpoint;
-    if (subBreed !== "undefined") {
+    let endpoint = `https://dog.ceo/api/breed/${breed}/images/random/5`;
+    if (subBreed) {
+      console.log("subbreed hittades/ inne från if");
       endpoint = `https://dog.ceo/api/breed/${breed}/${subBreed}/images/random/5`;
-    } else {
-      endpoint = `https://dog.ceo/api/breed/${breed}/images/random/5`;
     }
 
     console.log(endpoint);
     fetch(endpoint)
       .then((res) => res.json())
-      .then((result) => {
-        console.log(imageList);
-
-        return setImageList(result.message);
-      });
+      .then((result) => setImageList(result.message));
   }
 
   useEffect(() => {
@@ -39,7 +34,9 @@ export default function BreedImagesPage(props) {
   return (
     <div>
       {console.log(imageList)}
-      <h2 style={headingStyle}>{breed}</h2>
+      <h2 style={headingStyle}>
+        {subBreed} {breed}
+      </h2>
       <BreedImages imageLinks={imageList}></BreedImages>
     </div>
   );

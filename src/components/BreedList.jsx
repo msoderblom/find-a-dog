@@ -17,11 +17,9 @@ export default function BreedList() {
       let jsx;
       if (breed[1].length !== 0) {
         let subBreedList = breed[1].map((subBreed, i) => {
-          const breedURL = `${breed[0]}/${subBreed}`;
-
           return (
             <li className="list-group-item" key={index + "." + i}>
-              <Link to={`/breed/${breedURL}`}>
+              <Link to={`/breed/${breed[0]}/${subBreed}`}>
                 {subBreed} {breed[0]}
               </Link>
             </li>
@@ -37,7 +35,7 @@ export default function BreedList() {
       } else {
         jsx = (
           <li className="list-group-item" key={index}>
-            <Link to={`/breed/${breed}`}>{breed}</Link>
+            <Link to={`/breed/${breed[0]}`}>{breed[0]}</Link>
           </li>
         );
       }
